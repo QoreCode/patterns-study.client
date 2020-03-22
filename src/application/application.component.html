@@ -1,3 +1,5 @@
 <div class="application">
-    <h1>applicationComponent</h1>
+    <component :is="layout">
+        <router-view :layout.sync="layout"/>
+    </component>
 </div>

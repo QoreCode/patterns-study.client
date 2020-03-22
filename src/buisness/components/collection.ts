@@ -1,26 +1,25 @@
-import { Model } from "@/buisness/components/model";
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
-export abstract class Collection {
-  protected entities: Array<Model> = [];
+export abstract class Collection<Model> {
+  protected entities: Model[] = [];
 
-  protected abstract createModel(data: Record<string, any>): Model;
-
-  setEntity(entity: Record<string, any>): void {
+  public setEntity(entity: Record<string, Model>): void {
     this.entities.push(this.createModel(entity));
   }
 
-  setEntities(entities: Array<Record<string, any>>): void {
-    this.entities = _.map(entities, (entity: Record<string, any>) => {
+  public setEntities(entities: Array<Record<string, Model>>): void {
+    this.entities = _.map(entities, (entity: Record<string, Model>) => {
       return this.createModel(entity);
     });
   }
 
-  isEmpty() {
+  public isEmpty() {
     return !this.entities.length;
   }
 
-  getEntities(): Array<Model> {
+  public getEntities(): Model[] {
     return this.entities;
   }
+
+  protected abstract createModel(data: Record<string, Model>): Model;
 }

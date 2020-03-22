@@ -1,8 +1,8 @@
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 export enum ORDER_TYPES {
-  DESC = "desc",
-  ASC = "asc"
+  DESC = 'desc',
+  ASC = 'asc',
 }
 
 export interface RequestCriteriaInterface {
@@ -16,23 +16,23 @@ export interface RequestCriteriaInterface {
         field: string;
         type: ORDER_TYPES;
       }
-    | "random";
+    | 'random';
   groupBy?: string[];
 }
 
 export class RequestCriteria implements RequestCriteriaInterface {
-  perPage?: number;
-  page?: number;
-  expand?: string[];
-  condition?: { [fieldName: string]: Array<number | string | boolean> };
-  mixins?: [];
-  order?:
+  public perPage?: number;
+  public page?: number;
+  public expand?: string[];
+  public condition?: { [fieldName: string]: Array<number | string | boolean> };
+  public mixins?: [];
+  public order?:
     | {
         field: string;
         type: ORDER_TYPES;
       }
-    | "random";
-  groupBy?: string[];
+    | 'random';
+  public groupBy?: string[];
 
   constructor(data: RequestCriteriaInterface) {
     _.each(data, (value: any, field: string) => {
@@ -40,7 +40,7 @@ export class RequestCriteria implements RequestCriteriaInterface {
     });
   }
 
-  setProp(name: string, value: any) {
+  public setProp(name: string, value: any) {
     if (_.isUndefined(value)) {
       return;
     }
@@ -48,40 +48,40 @@ export class RequestCriteria implements RequestCriteriaInterface {
     _.set(this, name, value);
   }
 
-  getProps() {
+  public getProps() {
     const props = {};
 
     if (!_.isUndefined(this.expand)) {
-      _.set(props, "expand", this.expand.join(","));
+      _.set(props, 'expand', this.expand.join(','));
     }
 
     if (!_.isUndefined(this.page)) {
-      _.set(props, "page", this.page);
+      _.set(props, 'page', this.page);
     }
 
     if (!_.isUndefined(this.mixins)) {
-      _.set(props, "mixins", this.mixins.join(","));
+      _.set(props, 'mixins', this.mixins.join(','));
     }
 
     if (!_.isUndefined(this.groupBy)) {
-      _.set(props, "groupBy", this.groupBy.join(","));
+      _.set(props, 'groupBy', this.groupBy.join(','));
     }
 
     if (!_.isUndefined(this.perPage)) {
-      _.set(props, "per-page", this.perPage);
+      _.set(props, 'per-page', this.perPage);
     }
 
     if (!_.isUndefined(this.order)) {
-      let value = "";
+      let value = '';
 
-      if (this.order === "random") {
+      if (this.order === 'random') {
         value = this.order;
       } else {
-        const sign = this.order.type === ORDER_TYPES.ASC ? "" : "-";
+        const sign = this.order.type === ORDER_TYPES.ASC ? '' : '-';
         value = sign + this.order.field;
       }
 
-      _.set(props, "sort", value);
+      _.set(props, 'sort', value);
     }
 
     if (this.condition && Object.keys(this.condition).length) {
@@ -91,10 +91,10 @@ export class RequestCriteria implements RequestCriteriaInterface {
         this.condition,
         (value: Array<string | number | boolean>, field: string) => {
           _.set(condition, field, value);
-        }
+        },
       );
 
-      _.set(props, "filter", condition);
+      _.set(props, 'filter', condition);
     }
 
     return props;

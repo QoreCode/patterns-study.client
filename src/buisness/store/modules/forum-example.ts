@@ -7,8 +7,8 @@ export const FORUM_MUTATIONS = {};
 const state: IForumState = {};
 
 export default {
-  state: state,
+  state,
   mutations: {},
   getters: {},
-  actions: {}
+  actions: {},
 };
