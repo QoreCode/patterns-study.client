@@ -1,4 +1,4 @@
-import {Model} from '@/buisness/components/model';
+import {Model} from '@/buisness/core/model';
 
 export interface IPatternCategoryModel {
     name: string;

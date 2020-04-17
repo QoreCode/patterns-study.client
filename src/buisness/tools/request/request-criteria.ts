@@ -17,7 +17,7 @@ export class RequestCriteria implements IRequestCriteriaInterface {
     public page?: number;
 
     constructor(data: IRequestCriteriaInterface) {
-        if (data.page != null) {
+        if (data.page !== undefined) {
             this.page = data.page;
         }
     }
@@ -25,7 +25,7 @@ export class RequestCriteria implements IRequestCriteriaInterface {
     public getProps(): IRequestCriteriaProps {
         const props = {};
 
-        if (this.page != null) {
+        if (this.page !== undefined) {
             _.set(props, 'page', this.page);
         }
 

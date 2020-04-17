@@ -1,13 +1,14 @@
-import {RequestCriteria} from '@/buisness/tools/request-criteria';
-import {Request} from '@/buisness/tools/request';
-import {Collection} from '@/buisness/components/collection';
+import {RequestCriteria} from '@/buisness/tools/request/request-criteria';
+import {Request} from '@/buisness/tools/request/request';
+import {Collection} from '@/buisness/core/collection';
+import {DefaultRequestHandler} from '@/buisness/tools/request/handlers/default-request-handler';
 
 export abstract class Mapper<Model> {
     protected abstract entity: string;
     protected request: Request;
 
     constructor() {
-        this.request = Request.getInstance();
+        this.request = Request.getInstance(new DefaultRequestHandler());
     }
 
     public async getAll(criteria?: RequestCriteria): Promise<Collection<Model>> {

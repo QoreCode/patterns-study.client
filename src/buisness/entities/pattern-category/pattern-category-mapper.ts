@@ -1,6 +1,6 @@
-import {Mapper} from '@/buisness/components/mapper';
+import {Mapper} from '@/buisness/core/mapper';
 import {IPatternCategoryModel, PatternCategoryModel} from '@/buisness/entities/pattern-category/pattern-category-model';
-import {Collection} from '@/buisness/components/collection';
+import {Collection} from '@/buisness/core/collection';
 import {PatternCategoryCollection} from '@/buisness/entities/pattern-category/pattern-category-collection';
 
 export class PatternCategoryMapper extends Mapper<PatternCategoryModel> {

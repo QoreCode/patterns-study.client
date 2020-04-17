@@ -8,8 +8,8 @@ export abstract class Collection<Model> {
         this.entities.push(this.createModel(entity));
     }
 
-    public setEntities(entities: IPatternCategoryModel[]): void {
-        this.entities = _.map(entities, (entity: IPatternCategoryModel) => this.createModel(entity));
+    public setEntities(entities: any[]): void {
+        this.entities = _.map(entities, (entity: any) => this.createModel(entity));
     }
 
     public isEmpty() {
@@ -20,5 +20,5 @@ export abstract class Collection<Model> {
         return this.entities;
     }
 
-    protected abstract createModel(data: IPatternCategoryModel): Model;
+    protected abstract createModel(data: any): Model;
 }
